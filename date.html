@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sayang, Nak Date Tak? ❤️</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts & FontAwesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #0d0f17;
+            color: #f3f4f6;
+            min-height: 100vh;
+        }
+        h1, h2, .font-heading {
+            font-family: 'Outfit', sans-serif;
+        }
+        .runaway-btn {
+            position: absolute;
+            transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .glow-pink {
+            box-shadow: 0 0 25px rgba(244, 63, 94, 0.35);
+        }
+        .glow-card {
+            background: linear-gradient(145deg, rgba(30, 27, 46, 0.8), rgba(18, 16, 28, 0.9));
+            border: 1px solid rgba(244, 63, 94, 0.15);
+            backdrop-filter: blur(12px);
+        }
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(2deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+    </style>
+</head>
+<body class="text-gray-100 pb-16 flex flex-col items-center justify-start min-h-screen">
+
+    <header class="text-center pt-12 pb-8 px-4 max-w-2xl w-full">
+        <div class="inline-flex items-center gap-2 bg-rose-950/60 border border-rose-500/30 px-4 py-1.5 rounded-full text-rose-300 font-semibold text-xs mb-6 tracking-wide shadow-sm animate-pulse">
+        </div>
+        <h1 class="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-rose-400 via-pink-300 to-purple-400 mb-4 tracking-tight">
+            JOMMM DATEE CAYANGGG BABYYYY
+        </h1>
+        <p class="text-gray-300 text-sm md:text-base leading-relaxed max-w-lg mx-auto font-normal">
+            takkk sabaaanyaaa nak date dengann sayangggg <span class="text-rose-400 font-semibold">
+        </p>
+
+        <!-- Main Button to Open Photos Gallery -->
+        <div class="mt-8">
+            <button onclick="openGalleryModal()" class="w-full sm:w-auto bg-gradient-to-r from-pink-500 via-rose-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-bold py-4 px-6 rounded-2xl shadow-xl glow-pink transform hover:-translate-y-1 transition duration-200 flex items-center justify-center gap-3 mx-auto border border-pink-400/30 cursor-pointer">
+                <span class="text-xl">📸</span>
+                <span class="text-sm md:text-base tracking-wide">semuaa yanggg babyy rasaaaaa comelll andd best kalauuu bawak sayangg datangggg (tekann ciniii)</span>
+            </button>
+        </div>
+    </header>
+
+    <section class="max-w-xl w-full px-4 text-center mb-10">
+        <div class="glow-card rounded-3xl p-6 md:p-8 shadow-2xl relative overflow-hidden border border-rose-500/20" id="proposalCard">
+            
+            <div class="mb-6">
+                <span class="text-5xl floating inline-block mb-3"></span>
+                <h2 class="text-2xl md:text-3xl font-extrabold text-rose-200 leading-tight">
+                    sayanggg nak dateee ngann babyy takk ?!?!? 
+                </h2>
+            </div>
+
+            <!-- Buttons Wrapper -->
+            <div class="relative h-28 flex justify-center items-center gap-4" id="buttonContainer">
+                <!-- NAK BUTTON -->
+                <button id="yesBtn" onclick="handleYesClick()" class="bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white font-bold text-lg py-3.5 px-7 rounded-full shadow-lg glow-pink transform hover:scale-105 transition duration-200 cursor-pointer z-10">
+                    naknaknaknaknakkkkk
+                </button>
+
+                <!-- TAKNAK BUTTON (Running Button) -->
+                <button id="noBtn" class="runaway-btn bg-gray-800/90 border border-gray-700 hover:bg-gray-800 text-gray-400 font-semibold text-sm py-2.5 px-5 rounded-full shadow-md z-0" style="left: 65%;">
+                    taknakk (selek)
+                </button>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="feelingSection" class="max-w-xl w-full px-4 hidden transition-all duration-500">
+        <div class="glow-card rounded-3xl p-6 md:p-8 shadow-2xl text-center border border-rose-500/30">
+            <div class="text-4xl mb-3"></div>
+            <h2 class="text-2xl font-extrabold text-rose-300 mb-2">YEAYYYYYYYY</h2>
+            <p class="text-gray-300 text-sm mb-5">
+                takkk sabaanyaaa babyy nakk datee dengannn cayangg and spendtimeee dengan sayanggg, apaaa perasaannn sayanggg ehhh hehehe andd sukaa takk tempatt ii yangg babyyy snap gambaaa tuuu
+            </p>
+
+            <form id="telegramForm" onsubmit="sendToTelegram(event)" class="space-y-4">
+                <div>
+                    <textarea id="userFeeling" rows="3" required placeholder="tulisss apaa perasaannn kat sinii sayanggg" class="w-full p-4 rounded-2xl bg-gray-900/80 border border-rose-500/30 text-gray-100 placeholder-gray-500 focus:border-rose-400 focus:outline-none focus:ring-1 focus:ring-rose-400/50 text-sm resize-none"></textarea>
+                </div>
+
+                <button type="submit" id="submitBtn" class="w-full bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white font-bold text-base py-3.5 rounded-xl shadow-lg transition duration-200 cursor-pointer flex items-center justify-center gap-2 glow-pink">
+                    <span>send</span>
+                </button>
+            </form>
+
+            <div id="statusMsg" class="mt-4 text-sm font-semibold text-rose-400 hidden"></div>
+        </div>
+    </section>
+
+    <section id="romanticNote" class="max-w-xl w-full px-4 mt-6 hidden">
+        <div class="bg-gradient-to-br from-rose-950/80 via-pink-950/50 to-purple-950/80 border border-rose-500/30 text-white rounded-3xl p-6 shadow-xl text-center relative overflow-hidden">
+            <div class="absolute -right-8 -bottom-8 text-8xl opacity-10">❤️</div>
+            <h3 class="text-xl font-bold text-rose-300 mb-2">Jumpa Nanti Sayang! 🌹</h3>
+            <p class="text-gray-300 text-sm leading-relaxed">
+                Baby tak sabar gila nak pimpin tangan sayang, jalan-jalan kat Plan B, ambil gambar comel-comel untuk sayang, and spend time berdua! Thank you sebab sudi date ngan baby. Love you so muchhh! 😘✨
+            </p>
+        </div>
+    </section>
+
+    <div id="galleryModal" class="fixed inset-0 bg-black/90 backdrop-blur-md z-50 flex flex-col items-center justify-start p-4 md:p-6 overflow-y-auto hidden">
+        <div class="max-w-4xl w-full my-auto py-6">
+            
+            <!-- Modal Header -->
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mb-6 border-b border-rose-500/20 pb-4">
+                <div>
+                    <h2 class="text-2xl font-bold text-rose-300 font-heading text-center sm:text-left">
+                        tempattt ii yangg babyyyy cari untukk cayanggg tengokk ii
+                    </h2>
+                    <p class="text-xs text-gray-400 mt-1 text-center sm:text-left">cayanggg tengokk cemuaa ni oceyyy kalauu tak sukaa bagitauu babyyyy hehehe</p>
+                </div>
+
+                <!-- Back to Main Menu Button -->
+                <button onclick="closeGalleryModal()" class="bg-gray-800 hover:bg-gray-700 text-rose-300 font-semibold px-5 py-2.5 rounded-xl border border-rose-500/30 text-sm flex items-center gap-2 transition cursor-pointer">
+                    main menu
+                </button>
+            </div>
+
+            <!-- Grid Gambar Plan B Ipoh (Support 32+ Gambar) -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3.5" id="galleryGrid">
+                <!-- Javascript will populate pictures -->
+            </div>
+
+            <!-- Bottom Back Button -->
+            <div class="mt-8 text-center">
+                <button onclick="closeGalleryModal()" class="bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white font-bold px-8 py-3 rounded-full text-sm shadow-lg glow-pink cursor-pointer transition">
+                    main menu
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="imagePreviewModal" class="fixed inset-0 bg-black/95 backdrop-blur-lg z-[60] flex flex-col items-center justify-between p-4 hidden transition-all duration-300">
+        <!-- Top Bar with Close Button -->
+        <div class="w-full max-w-4xl flex justify-between items-center py-2 px-4 border-b border-rose-500/20">
+            <span id="previewTitle" class="text-rose-300 font-medium text-sm md:text-base break-words text-center px-2">Gambar #1</span>
+            <button onclick="closeImagePreview()" class="bg-rose-950/80 hover:bg-rose-800 text-rose-300 hover:text-white p-2 px-3.5 rounded-full border border-rose-500/30 text-base font-bold transition cursor-pointer shrink-0">
+                ✕
+            </button>
+        </div>
+
+        <!-- Main Image View with Touch/Pinch Zoom and Pan Support -->
+        <div id="zoomContainer" class="relative flex-1 w-full max-w-4xl flex items-center justify-center my-4 overflow-hidden select-none touch-none">
+            <!-- Left Arrow Button -->
+            <button onclick="prevPreviewImage()" class="absolute left-2 sm:left-4 z-20 bg-black/60 hover:bg-rose-600/80 text-white p-3 sm:p-4 rounded-full border border-rose-500/30 backdrop-blur-md transition cursor-pointer transform active:scale-95">
+                ❮
+            </button>
+
+            <!-- Draggable & Pinchable Image Wrapper -->
+            <div id="imageWrapper" class="w-full h-full flex items-center justify-center cursor-grab active:cursor-grabbing">
+                <img id="previewImg" src="" alt="Plan B Preview" class="max-h-[70vh] max-w-full object-contain rounded-2xl shadow-2xl border border-rose-500/30 transition-transform duration-75 origin-center">
+            </div>
+
+            <!-- Right Arrow Button -->
+            <button onclick="nextPreviewImage()" class="absolute right-2 sm:right-4 z-20 bg-black/60 hover:bg-rose-600/80 text-white p-3 sm:p-4 rounded-full border border-rose-500/30 backdrop-blur-md transition cursor-pointer transform active:scale-95">
+                ❯
+            </button>
+        </div>
+
+        <!-- Bottom Image Counter & Zoom Hint -->
+        <div class="text-center pb-2 max-w-2xl px-2">
+            <p id="previewCounter" class="text-xs text-rose-300/80 font-mono mb-1">1 / 32</p>
+            <p id="previewSubtitle" class="text-xs text-gray-200 break-words leading-relaxed max-h-24 overflow-y-auto"></p>
+            <p class="text-[11px] text-rose-300/90 font-medium mt-1">🤏 Cubit (pinch) atau skrol untuk zoom bebas & seret untuk alih!</p>
+            <p class="text-[10px] text-gray-400 mt-0.5">double-tap untuk reset zoom</p>
+        </div>
+    </div>
+
+    <script>
+        // Pre-configured Telegram Bot Token & Chat ID
+        let TELEGRAM_BOT_TOKEN = '8877457796:AAEbT0RoYhqoTLSm37UxAbEHAb2GoqlnPow';
+        let TELEGRAM_CHAT_ID = '1777344181';
+
+        // Senarai 32 gambar manual Plan B Ipoh
+        let planBImages = [
+            { url: "1.jpeg", title: "seni market" },
+            { url: "2.jpeg", title: "seniii market accessories" },
+            { url: "3.jpeg", title: "seni markett necklace" },
+            { url: "4.jpeg", title: "plan b resto" },
+            { url: "5.jpeg", title: "seni market accessories/bracelett" },
+            { url: "6.jpeg", title: "seni markett bracelett" },
+            { url: "7.jpeg", title: "seni markett plushiess" },
+            { url: "8.jpeg", title: "seni markettt tumblerr" },
+            { url: "9.jpeg", title: "seni market" },
+            { url: "10.jpeg", title: "machaa cafe" },
+            { url: "11.jpeg", title: "long friess/rainbow bread" },
+            { url: "12.jpeg", title: "neckklace / bracelett" },
+            { url: "13.jpeg", title: "casesss of mineee (sayangg confirmsukaa sebab banyak barang comeiii HAHAHAHA)" },
+            { url: "14.jpeg", title: "" },
+            { url: "15.jpeg", title: "" },
+            { url: "16.jpeg", title: "gulagulaa kapass comeiii" },
+            { url: "17.jpeg", title: "PHOTOBOOTHHH (kalau ramaii kita gii limesnapp)" },
+            { url: "18.jpeg", title: "wagyuu (kotlaa sayangg nak merasaaa jadi datinn makan wagyuu harituu)" },
+            { url: "19.jpeg", title: "keychainnn" },
+            { url: "20.jpeg", title: "cases of mine tote bagg" },
+            { url: "21.jpeg", title: "accesoriesss / bracelett" },
+            { url: "22.jpeg", title: "KEYCHAINN COMEIII II (tapiii cayangg comeiii lagilaaaa HEHEHEHE)" },
+            { url: "23.jpeg", title: "" },
+            { url: "24.jpeg", title: "bracelett" },
+            { url: "25.jpeg", title: "MUNGEEEEEE" },
+            { url: "26.jpeg", title: "cincinnnn (kenaa beli syatuuu untukk cayanggg nantiii muehehehe)" },
+            { url: "27.jpeg", title: "crochett tomeyyy ii" },
+            { url: "28.jpeg", title: "" },
+            { url: "29.jpeg", title: "" },
+            { url: "30.jpeg", title: "" },
+            { url: "31.jpeg", title: "" },
+            { url: "32.jpeg", title: "" }
+        ];
+
+        let currentImageIndex = 0;
+
+        let scale = 1;
+        let panX = 0;
+        let panY = 0;
+        let isDragging = false;
+        let startX = 0;
+        let startY = 0;
+        let initialDistance = null;
+        let initialScale = 1;
+
+        function renderGallery() {
+            const galleryGrid = document.getElementById('galleryGrid');
+            galleryGrid.innerHTML = '';
+            planBImages.forEach((img, idx) => {
+                const card = document.createElement('div');
+                card.className = "group relative rounded-2xl overflow-hidden bg-gray-900 border border-rose-500/20 hover:border-rose-500/60 transition duration-300 shadow-md cursor-pointer flex flex-col justify-between";
+                card.onclick = () => openImagePreview(idx);
+                
+                // Allow text to wrap vertically so long descriptions are fully readable
+                card.innerHTML = `
+                    <img src="${img.url}" alt="${img.title}" onerror="this.onerror=null; this.src='https://placehold.co/400x400/1f192b/f43f5e?text=${idx+1}.jpeg';" class="w-full h-36 object-cover group-hover:scale-105 transition duration-500">
+                    <div class="p-3 bg-gray-900/95 border-t border-gray-800 flex items-start justify-between gap-2">
+                        <p class="text-[11px] font-medium text-rose-200 whitespace-normal break-words text-left leading-snug flex-1">#${idx+1} ${img.title}</p>
+                        <span class="text-[10px] text-rose-400/80 shrink-0 mt-0.5">🔍</span>
+                    </div>
+                `;
+                galleryGrid.appendChild(card);
+            });
+        }
+        renderGallery();
+
+        // Image Preview Lightbox Functions
+        function openImagePreview(index) {
+            currentImageIndex = index;
+            resetTransform();
+            updatePreviewModal();
+            document.getElementById('imagePreviewModal').classList.remove('hidden');
+        }
+
+        function closeImagePreview() {
+            document.getElementById('imagePreviewModal').classList.add('hidden');
+            resetTransform();
+        }
+
+        function updatePreviewModal() {
+            const imgData = planBImages[currentImageIndex];
+            const previewImg = document.getElementById('previewImg');
+            
+            previewImg.src = imgData.url;
+            previewImg.onerror = function() {
+                this.onerror = null;
+                this.src = `https://placehold.co/800x800/1f192b/f43f5e?text=${currentImageIndex + 1}.jpeg`;
+            };
+
+            const titleText = `#${currentImageIndex + 1} ${imgData.title}`;
+            document.getElementById('previewTitle').innerText = titleText;
+            document.getElementById('previewSubtitle').innerText = titleText;
+            document.getElementById('previewCounter').innerText = `${currentImageIndex + 1} / ${planBImages.length}`;
+            resetTransform();
+        }
+
+        const previewImg = document.getElementById('previewImg');
+        const zoomContainer = document.getElementById('zoomContainer');
+
+        function applyTransform() {
+            previewImg.style.transform = `translate(${panX}px, ${panY}px) scale(${scale})`;
+        }
+
+        function resetTransform() {
+            scale = 1;
+            panX = 0;
+            panY = 0;
+            applyTransform();
+        }
+
+        // Mouse Dragging (Pan) & Wheel Zoom
+        zoomContainer.addEventListener('mousedown', (e) => {
+            if (e.target.tagName === 'BUTTON') return;
+            isDragging = true;
+            startX = e.clientX - panX;
+            startY = e.clientY - panY;
+        });
+
+        window.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            panX = e.clientX - startX;
+            panY = e.clientY - startY;
+            applyTransform();
+        });
+
+        window.addEventListener('mouseup', () => {
+            isDragging = false;
+        });
+
+        zoomContainer.addEventListener('wheel', (e) => {
+            e.preventDefault();
+            const zoomIntensity = 0.1;
+            if (e.deltaY < 0) {
+                scale = Math.min(scale * (1 + zoomIntensity), 5);
+            } else {
+                scale = Math.max(scale / (1 + zoomIntensity), 1);
+                if (scale === 1) { panX = 0; panY = 0; }
+            }
+            applyTransform();
+        }, { passive: false });
+
+        // Touch Events for Mobile Pinch-to-Zoom & Pan
+        zoomContainer.addEventListener('touchstart', (e) => {
+            if (e.target.tagName === 'BUTTON') return;
+            if (e.touches.length === 1) {
+                isDragging = true;
+                startX = e.touches[0].clientX - panX;
+                startY = e.touches[0].clientY - panY;
+            } else if (e.touches.length === 2) {
+                isDragging = false;
+                initialDistance = getDistance(e.touches[0], e.touches[1]);
+                initialScale = scale;
+            }
+        }, { passive: true });
+
+        zoomContainer.addEventListener('touchmove', (e) => {
+            if (e.touches.length === 1 && isDragging) {
+                panX = e.touches[0].clientX - startX;
+                panY = e.touches[0].clientY - startY;
+                applyTransform();
+            } else if (e.touches.length === 2 && initialDistance !== null) {
+                const currentDistance = getDistance(e.touches[0], e.touches[1]);
+                const factor = currentDistance / initialDistance;
+                scale = Math.max(1, Math.min(initialScale * factor, 5));
+                if (scale === 1) { panX = 0; panY = 0; }
+                applyTransform();
+            }
+        }, { passive: true });
+
+        zoomContainer.addEventListener('touchend', (e) => {
+            if (e.touches.length < 2) {
+                initialDistance = null;
+            }
+            if (e.touches.length === 0) {
+                isDragging = false;
+            }
+        });
+
+        function getDistance(t1, t2) {
+            const dx = t1.clientX - t2.clientX;
+            const dy = t1.clientY - t2.clientY;
+            return Math.sqrt(dx * dx + dy * dy);
+        }
+
+        // Double tap to reset or zoom in
+        let lastTap = 0;
+        previewImg.addEventListener('touchend', (e) => {
+            const currentTime = new Date().getTime();
+            const tapLength = currentTime - lastTap;
+            if (tapLength < 300 && tapLength > 0) {
+                if (scale > 1) {
+                    resetTransform();
+                } else {
+                    scale = 2.5;
+                    applyTransform();
+                }
+                e.preventDefault();
+            }
+            lastTap = currentTime;
+        });
+
+        function prevPreviewImage() {
+            currentImageIndex = (currentImageIndex - 1 + planBImages.length) % planBImages.length;
+            updatePreviewModal();
+        }
+
+        function nextPreviewImage() {
+            currentImageIndex = (currentImageIndex + 1) % planBImages.length;
+            updatePreviewModal();
+        }
+
+        document.getElementById('imagePreviewModal').addEventListener('click', function(e) {
+            if (e.target.id === 'imagePreviewModal') {
+                closeImagePreview();
+            }
+        });
+
+        document.addEventListener('keydown', function(e) {
+            const previewModal = document.getElementById('imagePreviewModal');
+            if (!previewModal.classList.contains('hidden')) {
+                if (e.key === 'ArrowLeft') prevPreviewImage();
+                if (e.key === 'ArrowRight') nextPreviewImage();
+                if (e.key === 'Escape') closeImagePreview();
+            }
+        });
+
+        function openGalleryModal() {
+            document.getElementById('galleryModal').classList.remove('hidden');
+        }
+
+        function closeGalleryModal() {
+            document.getElementById('galleryModal').classList.add('hidden');
+        }
+
+        // Runaway "Taknak" Button Logic
+        const noBtn = document.getElementById('noBtn');
+        const container = document.getElementById('buttonContainer');
+
+        function moveButton() {
+            const containerRect = container.getBoundingClientRect();
+            const btnRect = noBtn.getBoundingClientRect();
+
+            const maxX = containerRect.width - btnRect.width - 20;
+            const maxY = containerRect.height - btnRect.height - 10;
+
+            const randomX = Math.max(10, Math.floor(Math.random() * maxX));
+            const randomY = Math.max(10, Math.floor(Math.random() * maxY));
+
+            noBtn.style.left = `${randomX}px`;
+            noBtn.style.top = `${randomY}px`;
+        }
+
+        noBtn.addEventListener('mouseenter', moveButton);
+        noBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            moveButton();
+        });
+
+        function handleYesClick() {
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
+
+            const feelingSec = document.getElementById('feelingSection');
+            feelingSec.classList.remove('hidden');
+            feelingSec.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        async function sendToTelegram(e) {
+            e.preventDefault();
+
+            const feelingText = document.getElementById('userFeeling').value;
+            const statusMsg = document.getElementById('statusMsg');
+            const submitBtn = document.getElementById('submitBtn');
+
+            if (!feelingText.trim()) return;
+
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = "Loading Mesej Sayang... 💌";
+
+            const message = `💖 *DATE CONFIRMED AT PLAN B IPOH!* 💖\n\n🥰 *Luahan Perasaan GF Kau:* \n"${feelingText}"\n\n✨ _Sent to owner: @harizzzi_ 🎉`;
+
+            const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+
+            try {
+                const res = await fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        chat_id: TELEGRAM_CHAT_ID,
+                        text: message,
+                        parse_mode: 'Markdown'
+                    })
+                });
+
+                const data = await res.json();
+
+                if (data.ok) {
+                    statusMsg.classList.remove('hidden');
+                    statusMsg.className = "mt-4 text-xs font-semibold text-emerald-400";
+                    statusMsg.innerHTML = "OCEYY ILOPEEYOUUU CAYANGGGGGG";
+
+                    document.getElementById('romanticNote').classList.remove('hidden');
+                    document.getElementById('romanticNote').scrollIntoView({ behavior: 'smooth' });
+                    submitBtn.style.display = 'none';
+                } else {
+                    throw new Error(data.description || 'Gagal hantar');
+                }
+            } catch (err) {
+                statusMsg.classList.add('hidden');
+                statusMsg.className = "mt-4 text-xs font-semibold text-rose-400";
+                statusMsg.innerHTML = "⚠️ Ralat: " + err.message + " (Tapi jangan risau, mesej tersimpan!)";
+                document.getElementById('romanticNote').classList.remove('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
